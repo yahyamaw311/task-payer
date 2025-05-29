@@ -70,10 +70,15 @@
   border: 2px solid transparent;
 }
 
-.calendar-day:not(.empty):not(.header):not(.disabled):hover {
+.calendar-day:not(.empty):not(.header):hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-color: #f39c12;
+}
+
+.calendar-day:not(.empty):not(.header).forbidden:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+  transform: translateY(-2px);
 }
 
 .calendar-day.header {
@@ -88,8 +93,8 @@
   font-weight: bold;
 }
 
-.calendar-day.header.disabled-day {
-  color: #95a5a6;
+.calendar-day.header.forbidden-day {
+  color: #ef4444;
 }
 
 .calendar-day.empty {
@@ -119,21 +124,16 @@
   margin-top: 0.3rem;
 }
 
-.calendar-day.disabled {
+.calendar-day.forbidden {
   background: #f8f9fa;
-  cursor: not-allowed;
-  opacity: 0.7;
+  border: 2px solid #edf2f7;
+  opacity: 0.8;
+  transition: all 0.3s ease;
 }
 
-.calendar-day.disabled .day-number {
-  color: #95a5a6;
-}
-
-.calendar-day .disabled-text {
-  font-size: 0.7rem;
-  color: #95a5a6;
-  margin-top: 0.3rem;
-  text-align: center;
+.calendar-day.forbidden .day-number {
+  color: #94a3b8;
+  transition: color 0.3s ease;
 }
 
 .calendar-day.today {
@@ -148,8 +148,31 @@
   background: #e67e22;
 }
 
-.calendar-day.today.disabled {
-  background: #95a5a6;
+.calendar-day.today.forbidden {
+  background: #94a3b8;
+}
+
+.calendar-day.today.forbidden .day-number {
+  color: white;
+}
+
+.calendar-day.shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 .progress-bar {

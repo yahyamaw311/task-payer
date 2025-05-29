@@ -13,6 +13,7 @@ const ChoresList = () => {
   });
   
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [shakeDay, setShakeDay] = useState(null);
 
   // Save to localStorage whenever completedDays changes
   useEffect(() => {
@@ -36,18 +37,27 @@ const ChoresList = () => {
     return ALLOWED_DAYS.includes(date.getDay());
   };
 
-  const toggleDay = (day) => {
-    if (!isDayAllowed(day)) return;
-    
-    const dateStr = formatDate(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      day
-    );
-    setCompletedDays(prev => ({
-      ...prev,
-      [dateStr]: !prev[dateStr]
-    }));
+  const handleDayClick = (day) => {
+    if (isDayAllowed(day)) {
+      const dateStr = formatDate(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        day
+      );
+      setCompletedDays(prev => ({
+        ...prev,
+        [dateStr]: !prev[dateStr]
+      }));
+    } else {
+      // Trigger vibration if available
+      if (navigator.vibrate) {
+        navigator.vibrate(200);
+      }
+      
+      // Trigger shake animation
+      setShakeDay(day);
+      setTimeout(() => setShakeDay(null), 500); // Remove shake class after animation
+    }
   };
 
   const getMonthName = (date) => {
@@ -79,7 +89,7 @@ const ChoresList = () => {
       days.push(
         <div 
           key={`header-${day}`} 
-          className={`calendar-day header ${ALLOWED_DAYS.includes(index) ? 'allowed-day' : 'disabled-day'}`}
+          className={`calendar-day header ${ALLOWED_DAYS.includes(index) ? 'allowed-day' : 'forbidden-day'}`}
         >
           {day}
         </div>
@@ -108,12 +118,12 @@ const ChoresList = () => {
           className={`calendar-day 
             ${isCompleted ? 'completed' : ''} 
             ${isToday ? 'today' : ''} 
-            ${!isAllowed ? 'disabled' : ''}`}
-          onClick={() => isAllowed && toggleDay(day)}
+            ${!isAllowed ? 'forbidden' : ''}
+            ${shakeDay === day ? 'shake' : ''}`}
+          onClick={() => handleDayClick(day)}
         >
           <span className="day-number">{day}</span>
           {isCompleted && <span className="earned-amount">+$7</span>}
-          {!isAllowed && <span className="disabled-text">Not Available</span>}
         </div>
       );
     }
