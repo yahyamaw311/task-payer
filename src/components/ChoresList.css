@@ -1,0 +1,246 @@
+.chores-list {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.chores-list h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.available-days {
+  text-align: center;
+  color: #f39c12;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.calendar-header button {
+  background: #f39c12;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s ease;
+}
+
+.calendar-header button:hover {
+  background: #e67e22;
+}
+
+.calendar-header h3 {
+  color: #2c3e50;
+  margin: 0;
+  min-width: 200px;
+  text-align: center;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.calendar-day:not(.empty):not(.header):not(.disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: #f39c12;
+}
+
+.calendar-day.header {
+  background: #f8f9fa;
+  font-weight: 500;
+  color: #2c3e50;
+  cursor: default;
+}
+
+.calendar-day.header.allowed-day {
+  color: #f39c12;
+  font-weight: bold;
+}
+
+.calendar-day.header.disabled-day {
+  color: #95a5a6;
+}
+
+.calendar-day.empty {
+  background: transparent;
+  cursor: default;
+}
+
+.calendar-day .day-number {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.calendar-day.completed {
+  background: #fff3e0;
+  border-color: #f39c12;
+}
+
+.calendar-day.completed .day-number {
+  color: #f39c12;
+}
+
+.calendar-day .earned-amount {
+  font-size: 0.8rem;
+  color: #f39c12;
+  font-weight: 500;
+  margin-top: 0.3rem;
+}
+
+.calendar-day.disabled {
+  background: #f8f9fa;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.calendar-day.disabled .day-number {
+  color: #95a5a6;
+}
+
+.calendar-day .disabled-text {
+  font-size: 0.7rem;
+  color: #95a5a6;
+  margin-top: 0.3rem;
+  text-align: center;
+}
+
+.calendar-day.today {
+  background: #f39c12;
+}
+
+.calendar-day.today .day-number {
+  color: white;
+}
+
+.calendar-day.today.completed {
+  background: #e67e22;
+}
+
+.calendar-day.today.disabled {
+  background: #95a5a6;
+}
+
+.progress-bar {
+  background: #f1f2f6;
+  height: 20px;
+  border-radius: 10px;
+  margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: #f39c12;
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #2c3e50;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.days-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.day-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #f39c12;
+}
+
+.day-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.day-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.day-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #f39c12;
+}
+
+.day-name {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  font-weight: 500;
+  flex: 1;
+}
+
+.day-item.completed {
+  background: #f8f9fa;
+  border-left-color: #95a5a6;
+}
+
+.day-item.completed .day-name {
+  text-decoration: line-through;
+  color: #95a5a6;
+}
+
+.clear-data-button {
+  display: block;
+  margin: 0 auto;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.clear-data-button:hover {
+  background: #c0392b;
+} 

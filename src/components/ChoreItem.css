@@ -1,0 +1,52 @@
+.chore-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #f39c12;
+}
+
+.chore-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chore-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chore-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #f39c12;
+}
+
+.chore-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chore-task {
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.chore-assigned {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.completed {
+  background: #f8f9fa;
+  border-left-color: #95a5a6;
+}
+
+.completed .chore-task {
+  text-decoration: line-through;
+  color: #95a5a6;
+} 

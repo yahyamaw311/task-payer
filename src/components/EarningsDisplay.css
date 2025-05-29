@@ -1,0 +1,41 @@
+.earnings-display {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.earnings-card {
+  background: #f39c12;
+  color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.earnings-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.earnings-card .amount {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.earnings-card .rate {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.earned-amount {
+  color: #f39c12;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.8rem;
+  background: #fff3e0;
+  border-radius: 15px;
+} 
