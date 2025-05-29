@@ -1,15 +1,16 @@
 .chore-item {
   background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border-left: 4px solid #f39c12;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 2px solid #f1f5f9;
 }
 
 .chore-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+  border-color: #2563eb;
 }
 
 .chore-content {
@@ -22,7 +23,7 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #f39c12;
+  accent-color: #2563eb;
 }
 
 .chore-details {
@@ -33,20 +34,21 @@
 
 .chore-task {
   font-size: 1.1rem;
-  color: #2c3e50;
+  color: #1e293b;
+  font-weight: 600;
 }
 
 .chore-assigned {
-  font-size: 0.9rem;
-  color: #7f8c8d;
+  font-size: 0.875rem;
+  color: #64748b;
 }
 
 .completed {
-  background: #f8f9fa;
-  border-left-color: #95a5a6;
+  background: #f8fafc;
+  border-color: #e2e8f0;
 }
 
 .completed .chore-task {
   text-decoration: line-through;
-  color: #95a5a6;
+  color: #94a3b8;
 } 

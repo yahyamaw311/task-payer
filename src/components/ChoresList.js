@@ -14,6 +14,7 @@ const ChoresList = () => {
   
   const [currentDate, setCurrentDate] = useState(new Date());
   const [shakeDay, setShakeDay] = useState(null);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
   // Save to localStorage whenever completedDays changes
   useEffect(() => {
@@ -71,10 +72,9 @@ const ChoresList = () => {
   };
 
   const clearAllData = () => {
-    if (window.confirm('Are you sure you want to clear all completion data? This cannot be undone.')) {
-      setCompletedDays({});
-      localStorage.removeItem(STORAGE_KEY);
-    }
+    setCompletedDays({});
+    localStorage.removeItem(STORAGE_KEY);
+    setShowConfirmDialog(false);
   };
 
   const { daysInMonth, firstDayOfMonth } = getDaysInMonth(currentDate);
@@ -96,11 +96,6 @@ const ChoresList = () => {
       );
     });
 
-    // Add empty cells for days before the first day of the month
-    for (let i = 0; i < firstDayOfMonth; i++) {
-      days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
-    }
-
     // Render the days of the month
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = formatDate(
@@ -121,6 +116,7 @@ const ChoresList = () => {
             ${!isAllowed ? 'forbidden' : ''}
             ${shakeDay === day ? 'shake' : ''}`}
           onClick={() => handleDayClick(day)}
+          style={{ gridColumnStart: day === 1 ? firstDayOfMonth + 1 : 'auto' }}
         >
           <span className="day-number">{day}</span>
           {isCompleted && <span className="earned-amount">+$7</span>}
@@ -136,21 +132,42 @@ const ChoresList = () => {
       <h2>Monthly Dishes Calendar</h2>
       <p className="available-days">Available days: Sunday, Wednesday, Thursday</p>
       
-      <EarningsDisplay completedDays={totalCompletedDays} />
+      <div className="main-content">
+        <div className="calendar-container">
+          <div className="calendar-header">
+            <button onClick={() => changeMonth(-1)}>👈</button>
+            <h3>{getMonthName(currentDate)} {currentDate.getFullYear()}</h3>
+            <button onClick={() => changeMonth(1)}>👉</button>
+          </div>
 
-      <div className="calendar-header">
-        <button onClick={() => changeMonth(-1)}>&lt;</button>
-        <h3>{getMonthName(currentDate)} {currentDate.getFullYear()}</h3>
-        <button onClick={() => changeMonth(1)}>&gt;</button>
+          <div className="calendar-grid">
+            {renderCalendarDays()}
+          </div>
+
+          <button className="clear-data-button" onClick={() => setShowConfirmDialog(true)}>
+            Clear All Data
+          </button>
+        </div>
+
+        <EarningsDisplay completedDays={totalCompletedDays} />
       </div>
 
-      <div className="calendar-grid">
-        {renderCalendarDays()}
-      </div>
-
-      <button className="clear-data-button" onClick={clearAllData}>
-        Clear All Data
-      </button>
+      {showConfirmDialog && (
+        <div className="dialog-overlay">
+          <div className="dialog">
+            <h3>Clear All Data</h3>
+            <p>Are you sure you want to clear all completion data? This action cannot be undone.</p>
+            <div className="dialog-buttons">
+              <button className="dialog-button cancel" onClick={() => setShowConfirmDialog(false)}>
+                Cancel
+              </button>
+              <button className="dialog-button confirm" onClick={clearAllData}>
+                Yes, Clear Data
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
